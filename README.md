@@ -2,15 +2,20 @@
 
 Client-side tracking library to log events, metrics, errors, and messages. Detects bots, incognito mode usage, screen dimensions and perform browser fingerprinting.
 
-# Quick start
+## Quick start
 
-```javascript
-<script type="text/javascript" src="https://raw.githubusercontent.com/liberium/complex-tracker/main/dist/main.js"></script>
+```html
 <script>
-  // initialize tracker endpoint and settings
-  tracker.push({
-    endpoint: '/endpoint', // Endpoint to send tracking data to
-    attachClientContext: true, // Attach various client context, such as useragent, platform, and page url
-  });
+  const script = document.createElement("script");
+  script.src = "BUNDLE_URL";
+  script.onload = () => {
+    initializeTrackerClientContext(() => {
+      tracker.push({
+        endpoint: "/endpoint", // Endpoint to send tracking data to
+        attachClientContext: true, // Attach various client context, such as useragent, platform, and page url
+      });
+    });
+  };
+  document.head.appendChild(script);
 </script>
 ```
